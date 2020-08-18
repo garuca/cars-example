@@ -38,7 +38,7 @@ lib
 - mockito: 
 	- Usado para mocar os dados nos testes unitários
 - bloc: 
-    	- Principal gerenciamento de estado da aplicação 
+    - Principal gerenciamento de estado da aplicação 
 - get_it:
 	- Injeção de dependências
 - flutter_money_formatter:
