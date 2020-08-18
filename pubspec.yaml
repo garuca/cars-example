@@ -30,7 +30,6 @@ dependencies:
   mockito: ^4.1.1
   bloc: ^6.0.1
   get_it: ^4.0.4
-  font_awesome_flutter: ^8.8.1
   flutter_money_formatter: ^0.8.3
   flutter_svg: ^0.18.0
 dev_dependencies:
