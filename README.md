@@ -8,25 +8,26 @@
 - Alguns testes unitários
 ## Estrutura de pastas
 
-```
-lib
-└───reference
-│   └───features
-│   |  	└───feature1
-|	|   |   └───sub_feature
-|	|   |	└───data
-|	|   |	└───domain
-|	|   |	└───external
-|	|   |	└───presenter
-│   |   └───feature2
-|   |	└───sub_feature
-|   |   |	└───data
-|   |   |	└───domain
-|   |   |	└───external
-|   |   |	└───presenter
-│   app_module.dart
-│   app_widget.dart  
-```
+
+```  
+lib  
+└───reference  
+│   └───features  
+│   │	└───feature1  
+│  	│  	│	└───sub_feature  
+│  	│  	│  	└───data  
+│  	│  	│  	└───domain  
+│  	│ 	│  	└───external  
+│   │   │  	└───presenter  
+│   │   └───feature2  
+│   │  	│  	└───sub_feature  
+│  	│  	│  	└───data  
+│  	│  	│  	└───domain  
+│  	│  	│  	└───external  
+│  	│  	│  	└───presenter  
+│   app_module.dart  
+│   app_widget.dart 
+```  
 ## Arquitetura do projeto
 -   Clean Architecture
 ## Libs
