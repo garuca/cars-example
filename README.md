@@ -43,7 +43,8 @@ lib
 	- Injeção de dependências
 - flutter_money_formatter:
 	-  Usado apenas nos itens do feed para apresentar os campos de moeda e valor do veiculo
-- flutter_svg: Usado para renderizar imagens svg
+- flutter_svg:
+    - Usado para renderizar imagens svg
 ## Dispositivos usados nos testes
 - Android: 
 	- Moto G6
