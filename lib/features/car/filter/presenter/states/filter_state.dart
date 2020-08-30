@@ -1,7 +1,6 @@
 import 'package:cars/features/car/filter/domain/entities/filter.dart';
 import 'package:cars/features/car/filter/domain/errors/errors.dart';
 
-
 abstract class FilterState {}
 
 class StartState implements FilterState {

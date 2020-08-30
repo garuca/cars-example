@@ -1,4 +1,4 @@
-class Car{
+class Car {
   String id;
   String imageUrl;
   String brandName;
@@ -13,16 +13,14 @@ class Car{
 
   Car(
       {this.id,
-        this.imageUrl,
-        this.brandName,
-        this.modelName,
-        this.modelYear,
-        this.fuelType,
-        this.mileage,
-        this.transmissionType,
-        this.price,
-        this.brandId,
-        this.colorId});
-
-
+      this.imageUrl,
+      this.brandName,
+      this.modelName,
+      this.modelYear,
+      this.fuelType,
+      this.mileage,
+      this.transmissionType,
+      this.price,
+      this.brandId,
+      this.colorId});
 }

@@ -1,5 +1,5 @@
-class ColorCustom{
+class ColorCustom {
   String colorId;
   String name;
-  ColorCustom({this.colorId,this.name});
+  ColorCustom({this.colorId, this.name});
 }

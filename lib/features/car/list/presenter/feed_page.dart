@@ -62,7 +62,6 @@ class _FeedPageState extends State<FeedPage> {
       width: 30,
     );
 
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -343,5 +342,4 @@ class _FeedPageState extends State<FeedPage> {
       ),
     );
   }
-
 }

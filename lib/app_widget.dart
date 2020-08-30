@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'app_module.dart';
 
-
 class AppWidget extends StatefulWidget {
   @override
   _AppWidgetState createState() => _AppWidgetState();
@@ -25,13 +24,12 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter',
-      theme: ThemeData(
-        fontFamily: 'CircularStd',
-        primarySwatch: Colors.blue,
-      ),
-      home: FeedPage()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter',
+        theme: ThemeData(
+          fontFamily: 'CircularStd',
+          primarySwatch: Colors.blue,
+        ),
+        home: FeedPage());
   }
 }

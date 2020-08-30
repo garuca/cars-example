@@ -4,11 +4,11 @@ import 'package:cars/features/car/filter/domain/repositories/filter_repository.d
 import 'package:dartz/dartz.dart';
 
 abstract class ListAllColorsAndBrands {
-  Future<Either<Failure,Filter>> call();
+  Future<Either<Failure, Filter>> call();
 }
 
 class ListAllColorsAndBrandsImpl implements ListAllColorsAndBrands {
-  final  FiltersRepository repository;
+  final FiltersRepository repository;
 
   ListAllColorsAndBrandsImpl(this.repository);
 
@@ -16,5 +16,4 @@ class ListAllColorsAndBrandsImpl implements ListAllColorsAndBrands {
   Future<Either<Failure, Filter>> call() async {
     return repository.getFilter();
   }
-
 }

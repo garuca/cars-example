@@ -9,7 +9,7 @@ class FiltersRepositoryImpl implements FiltersRepository {
   FiltersRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<Failure, Filter>> getFilter() async{
+  Future<Either<Failure, Filter>> getFilter() async {
     try {
       final result = await dataSource.getFilters();
       return Right(result);

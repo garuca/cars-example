@@ -1,5 +1,3 @@
-
-
 import 'package:cars/features/car/list/domain/entities/car.dart';
 import 'package:cars/features/car/list/domain/errors/errors.dart';
 
@@ -15,7 +13,7 @@ class LoadingState implements CarState {
 
 class ErrorState implements CarState {
   final Failure error;
-  const ErrorState( this.error);
+  const ErrorState(this.error);
 }
 
 class SuccessState implements CarState {

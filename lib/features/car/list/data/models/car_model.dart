@@ -1,8 +1,6 @@
-
-
 import 'package:cars/features/car/list/domain/entities/car.dart';
 
-class CarModel extends Car{
+class CarModel extends Car {
   String id;
   String imageUrl;
   String brandName;
@@ -17,16 +15,16 @@ class CarModel extends Car{
 
   CarModel(
       {this.id,
-        this.imageUrl,
-        this.brandName,
-        this.modelName,
-        this.modelYear,
-        this.fuelType,
-        this.mileage,
-        this.transmissionType,
-        this.price,
-        this.brandId,
-        this.colorId});
+      this.imageUrl,
+      this.brandName,
+      this.modelName,
+      this.modelYear,
+      this.fuelType,
+      this.mileage,
+      this.transmissionType,
+      this.price,
+      this.brandId,
+      this.colorId});
 
   CarModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
@@ -41,5 +39,4 @@ class CarModel extends Car{
     brandId = json['brand_id'];
     colorId = json['color_id'];
   }
-
 }

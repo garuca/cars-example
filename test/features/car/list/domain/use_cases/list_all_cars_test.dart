@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:cars/features/car/list/domain/use_cases/list_all_cars.dart';
+
 class CarRepositoryMock extends Mock implements CarRepository {}
 
 main() {

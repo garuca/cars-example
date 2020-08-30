@@ -29,9 +29,9 @@ class _BrandPickerState extends State<BrandPicker> {
       subscription.pause(Future.delayed(const Duration(microseconds: 500)));
       setState(() {
         brandsFilters = widget.controller.brands
-            .where((brand) => brand.name.toUpperCase().contains(data.toUpperCase()))
+            .where((brand) =>
+                brand.name.toUpperCase().contains(data.toUpperCase()))
             .toList();
-
       });
     }, onDone: () {
       print("Task Done");

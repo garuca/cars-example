@@ -11,8 +11,7 @@ main() {
   final repository = CarRepositoryImpl(dataSource);
 
   test('Return list result Search', () async {
-    when(dataSource.getCars())
-        .thenAnswer((_) async => <CarModel>[]);
+    when(dataSource.getCars()).thenAnswer((_) async => <CarModel>[]);
     final result = await repository.list();
     expect(result | null, isA<List<CarModel>>());
   });

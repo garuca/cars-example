@@ -19,26 +19,26 @@ import 'features/car/list/domain/repositories/car_repository.dart';
 final sl = GetIt.I;
 
 startModule([Dio dio]) {
-  sl.registerFactory<ListAllCars>(
-          () => ListAllCarsImpl(sl<CarRepository>()));
+  sl.registerFactory<ListAllCars>(() => ListAllCarsImpl(sl<CarRepository>()));
   sl.registerFactory<ListFilteredCars>(
-          () => ListFilteredCarsImpl(sl<CarRepository>()));
+      () => ListFilteredCarsImpl(sl<CarRepository>()));
   sl.registerFactory<CarRepository>(
-          () => CarRepositoryImpl(sl<CarDataSource>()));
+      () => CarRepositoryImpl(sl<CarDataSource>()));
   sl.registerFactory<CarDataSource>(() => CarDataSourceImpl(sl()));
   sl.registerFactory(() => dio ?? Dio());
-  sl.registerLazySingleton(() => CarCubit(sl<ListAllCars>(),sl<ListFilteredCars>()));
-  sl.registerFactory<List<CarModel>>(
-          () => <CarModel>[]);
+  sl.registerLazySingleton(
+      () => CarCubit(sl<ListAllCars>(), sl<ListFilteredCars>()));
+  sl.registerFactory<List<CarModel>>(() => <CarModel>[]);
   sl.registerLazySingleton(() => Memory(sl()));
 
   sl.registerFactory<ListAllColorsAndBrands>(
-          () => ListAllColorsAndBrandsImpl(sl<FiltersRepository>()));
+      () => ListAllColorsAndBrandsImpl(sl<FiltersRepository>()));
   sl.registerFactory<FiltersRepository>(
-          () => FiltersRepositoryImpl(sl<FiltersDataSource>()));
+      () => FiltersRepositoryImpl(sl<FiltersDataSource>()));
   sl.registerFactory<FiltersDataSource>(() => FilterDataSourceImpl(sl()));
   sl.registerLazySingleton(() => FilterCubit(sl<ListAllColorsAndBrands>()));
 }
+
 disposeModule() {
   sl.get<CarCubit>().close();
   sl.unregister<CarCubit>();

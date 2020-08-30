@@ -5,25 +5,24 @@ class FeedLoadingPage extends StatefulWidget {
   _FeedLoadingPage createState() => _FeedLoadingPage();
 }
 
-class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderStateMixin{
+class _FeedLoadingPage extends State<FeedLoadingPage>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation gradientPosition;
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: Duration(milliseconds: 1500), vsync: this);
+    _controller = AnimationController(
+        duration: Duration(milliseconds: 1500), vsync: this);
 
     gradientPosition = Tween<double>(
       begin: -3,
       end: 10,
     ).animate(
-      CurvedAnimation(
-          parent: _controller,
-          curve: Curves.linear
-      ),
+      CurvedAnimation(parent: _controller, curve: Curves.linear),
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
 
     _controller.repeat();
   }
@@ -32,8 +31,8 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
   void dispose() {
     _controller.dispose();
     super.dispose();
-
   }
+
   @override
   Widget build(BuildContext context) {
     double spacing = 20;
@@ -45,36 +44,35 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        actions: <Widget>[
-          Container(
-            padding: EdgeInsets.only(right: 20, top: 15,bottom: 15),
-            child: Container(
-              height: 24,
-              width: 24,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment(gradientPosition.value, 0),
-                      end: Alignment(-1, 0),
-                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                  )
+          backgroundColor: Colors.white,
+          actions: <Widget>[
+            Container(
+              padding: EdgeInsets.only(right: 20, top: 15, bottom: 15),
+              child: Container(
+                height: 24,
+                width: 24,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment(gradientPosition.value, 0),
+                        end: Alignment(-1, 0),
+                        colors: [
+                      Colors.black12,
+                      Colors.black26,
+                      Colors.black12
+                    ])),
               ),
-            ),
-          )
-        ],
-        elevation: 0,
-        title: Container(
-          height: 24,
-          width: 150,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment(gradientPosition.value, 0),
-                  end: Alignment(-1, 0),
-                  colors: [Colors.black12, Colors.black26, Colors.black12]
-              )
-          ),
-        )
-      ),
+            )
+          ],
+          elevation: 0,
+          title: Container(
+            height: 24,
+            width: 150,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment(gradientPosition.value, 0),
+                    end: Alignment(-1, 0),
+                    colors: [Colors.black12, Colors.black26, Colors.black12])),
+          )),
       body: GridView.count(
         physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: columns,
@@ -89,13 +87,15 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
                 Expanded(
                   child: Container(
                     width: double.infinity,
-
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment(gradientPosition.value, 0),
                             end: Alignment(-1, 0),
-                            colors: [Colors.black12, Colors.black26, Colors.black12]
-                        ),
+                            colors: [
+                              Colors.black12,
+                              Colors.black26,
+                              Colors.black12
+                            ]),
                         borderRadius: BorderRadius.all(
                           const Radius.circular(5.0),
                         )),
@@ -114,25 +114,33 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
                           children: <Widget>[
                             Container(
                               height: 14,
-                              width: (itemWidth-(3*spacing))/2,
+                              width: (itemWidth - (3 * spacing)) / 2,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: Alignment(gradientPosition.value, 0),
+                                      begin:
+                                          Alignment(gradientPosition.value, 0),
                                       end: Alignment(-1, 0),
-                                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                                  )
-                              ),),
+                                      colors: [
+                                    Colors.black12,
+                                    Colors.black26,
+                                    Colors.black12
+                                  ])),
+                            ),
                             Text('  '),
                             Container(
                               height: 14,
-                              width: (itemWidth-(3*spacing))/2,
+                              width: (itemWidth - (3 * spacing)) / 2,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: Alignment(gradientPosition.value, 0),
+                                      begin:
+                                          Alignment(gradientPosition.value, 0),
                                       end: Alignment(-1, 0),
-                                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                                  )
-                              ),),
+                                      colors: [
+                                    Colors.black12,
+                                    Colors.black26,
+                                    Colors.black12
+                                  ])),
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -142,25 +150,33 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
                           children: <Widget>[
                             Container(
                               height: 14,
-                              width: (itemWidth-(3*spacing))/2,
+                              width: (itemWidth - (3 * spacing)) / 2,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: Alignment(gradientPosition.value, 0),
+                                      begin:
+                                          Alignment(gradientPosition.value, 0),
                                       end: Alignment(-1, 0),
-                                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                                  )
-                              ),),
+                                      colors: [
+                                    Colors.black12,
+                                    Colors.black26,
+                                    Colors.black12
+                                  ])),
+                            ),
                             Text('  '),
                             Container(
                               height: 14,
-                              width: (itemWidth-(3*spacing))/2,
+                              width: (itemWidth - (3 * spacing)) / 2,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: Alignment(gradientPosition.value, 0),
+                                      begin:
+                                          Alignment(gradientPosition.value, 0),
                                       end: Alignment(-1, 0),
-                                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                                  )
-                              ),),
+                                      colors: [
+                                    Colors.black12,
+                                    Colors.black26,
+                                    Colors.black12
+                                  ])),
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -170,25 +186,33 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
                           children: <Widget>[
                             Container(
                               height: 14,
-                              width: (itemWidth-(3*spacing))/2,
+                              width: (itemWidth - (3 * spacing)) / 2,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: Alignment(gradientPosition.value, 0),
+                                      begin:
+                                          Alignment(gradientPosition.value, 0),
                                       end: Alignment(-1, 0),
-                                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                                  )
-                              ),),
+                                      colors: [
+                                    Colors.black12,
+                                    Colors.black26,
+                                    Colors.black12
+                                  ])),
+                            ),
                             Text('  '),
                             Container(
                               height: 14,
-                              width: (itemWidth-(3*spacing))/2,
+                              width: (itemWidth - (3 * spacing)) / 2,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: Alignment(gradientPosition.value, 0),
+                                      begin:
+                                          Alignment(gradientPosition.value, 0),
                                       end: Alignment(-1, 0),
-                                      colors: [Colors.black12, Colors.black26, Colors.black12]
-                                  )
-                              ),),
+                                      colors: [
+                                    Colors.black12,
+                                    Colors.black26,
+                                    Colors.black12
+                                  ])),
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -196,14 +220,17 @@ class _FeedLoadingPage extends State<FeedLoadingPage> with SingleTickerProviderS
                         ),
                         Container(
                           height: 16,
-                          width: (itemWidth-(3*spacing))/2,
+                          width: (itemWidth - (3 * spacing)) / 2,
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
                                   begin: Alignment(gradientPosition.value, 0),
                                   end: Alignment(-1, 0),
-                                  colors: [Colors.black12, Colors.black26, Colors.black12]
-                              )
-                          ),),
+                                  colors: [
+                                Colors.black12,
+                                Colors.black26,
+                                Colors.black12
+                              ])),
+                        ),
                       ],
                     ),
                   ),

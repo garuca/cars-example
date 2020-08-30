@@ -4,7 +4,8 @@ import 'package:cars/features/car/list/domain/repositories/car_repository.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ListFilteredCars {
-  Future<Either<Failure, List<Car>>> call(List<int> listBrandId, List<int> listColorId);
+  Future<Either<Failure, List<Car>>> call(
+      List<int> listBrandId, List<int> listColorId);
 }
 
 class ListFilteredCarsImpl implements ListFilteredCars {
@@ -13,7 +14,8 @@ class ListFilteredCarsImpl implements ListFilteredCars {
   ListFilteredCarsImpl(this.repository);
 
   @override
-  Future<Either<Failure, List<Car>>> call(List<int> listBrandId, List<int> listColorId) async {
+  Future<Either<Failure, List<Car>>> call(
+      List<int> listBrandId, List<int> listColorId) async {
     return repository.filter(listBrandId, listColorId);
   }
 }

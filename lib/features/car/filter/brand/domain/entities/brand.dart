@@ -1,5 +1,5 @@
-class Brand{
+class Brand {
   String brandId;
   String name;
-  Brand({this.brandId,this.name});
+  Brand({this.brandId, this.name});
 }

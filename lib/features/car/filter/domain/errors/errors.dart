@@ -1,5 +1,6 @@
-abstract class Failure implements Exception{}
-class DataSourceError extends Failure{}
+abstract class Failure implements Exception {}
+
+class DataSourceError extends Failure {}
 
 class EmptyList extends Failure {}
 

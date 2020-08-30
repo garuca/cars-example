@@ -4,12 +4,11 @@ import 'package:cars/features/car/list/domain/repositories/car_repository.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ListAllCars {
-  Future<Either<Failure,List<Car>>> call();
-
+  Future<Either<Failure, List<Car>>> call();
 }
 
 class ListAllCarsImpl implements ListAllCars {
-  final  CarRepository repository;
+  final CarRepository repository;
 
   ListAllCarsImpl(this.repository);
 
@@ -17,5 +16,4 @@ class ListAllCarsImpl implements ListAllCars {
   Future<Either<Failure, List<Car>>> call() async {
     return repository.list();
   }
-
 }

@@ -14,7 +14,7 @@ class CarCubit extends Cubit<CarState> {
 
   Future<CarState> execute(List<int> listBrandId, List<int> listColorId) async {
     await listAllCars();
-    final response = await listFilteredCars(listBrandId,listColorId);
+    final response = await listFilteredCars(listBrandId, listColorId);
     final result = response.fold(
       (failure) => ErrorState(failure),
       (success) => SuccessState(success),
@@ -22,7 +22,8 @@ class CarCubit extends Cubit<CarState> {
     return result;
   }
 
-  Future<void> addFilterListCar(List<int> listBrandId, List<int> listColorId) async {
+  Future<void> addFilterListCar(
+      List<int> listBrandId, List<int> listColorId) async {
     await cancelable?.cancel();
 
     emit(const LoadingState());
