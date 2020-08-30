@@ -1,6 +1,9 @@
 # CARS
-![image info](./screenshot_1.png)
-![image info](./screenshot_2.png)
+## Screens
+
+ Listing Cars             |  Car Filter             |                 
+:-------------------------:|:-------------------------:
+<img src="./screenshot_1.png" width="180" height="320">  |    <img src="./screenshot_2.png" width="180" height="320"> 
 ## Funcionalidades
 - Listagem de carros  
 - Filtro por Cor  
