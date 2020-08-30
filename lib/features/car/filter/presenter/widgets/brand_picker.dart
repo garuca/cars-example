@@ -35,6 +35,7 @@ class _BrandPickerState extends State<BrandPicker> {
       });
     }, onDone: () {
       print("Task Done");
+      subscription.cancel();
     }, onError: (error) {
       print("Some Error");
     });
