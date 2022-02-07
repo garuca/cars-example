@@ -4,7 +4,6 @@ import 'package:cars/features/car/list/domain/errors/errors.dart';
 import 'package:cars/features/car/list/presenter/car_cubit.dart';
 import 'package:cars/features/car/list/presenter/states/feed_loading_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
@@ -21,6 +20,10 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      BlocProvider.of<CarCubit>(context, listen: false)
+          .addFilterListCar([], []);
+    });
   }
 
   _navigateAndDisplaySelection(BuildContext context, CarCubit carCubit) async {
@@ -314,7 +317,7 @@ class _FeedPageState extends State<FeedPage> {
 
               if (state is StartState) {
                 return Center(
-                  child: Text('Dita um filme que vc gosta em ingles plis '),
+                  child: FeedLoadingPage(),
                 );
               } else if (state is LoadingState) {
                 return Center(

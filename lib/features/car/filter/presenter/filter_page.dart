@@ -20,7 +20,6 @@ class FilterPage extends StatefulWidget {
 }
 
 class _FilterPageState extends State<FilterPage> {
-  FilterCubit cubit;
   var colorPickerController = ColorPickerController(colors: []);
   var brandPickerController = BrandPickerController(brands: []);
   final textEditingController = TextEditingController();
@@ -50,13 +49,13 @@ class _FilterPageState extends State<FilterPage> {
     }
 
     textEditingController.addListener(_printLatestValue);
-    cubit = GetIt.instance.get<FilterCubit>();
-    cubit.addFilterListCar();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      BlocProvider.of<FilterCubit>(context, listen: false).addFilterListCar();
+    });
   }
 
   @override
   void dispose() {
-    cubit.close();
     streamController.close();
     brandPickerController.streamController.close();
     textEditingController.dispose();
@@ -280,8 +279,7 @@ class _FilterPageState extends State<FilterPage> {
           children: <Widget>[
             Expanded(
               child: BlocBuilder<FilterCubit, FilterState>(
-                  builder: (context, snapshot) {
-                var state = cubit.state;
+                  builder: (context, state) {
 
                 if (state is ErrorState) {
                   return _buildError(state.error);
