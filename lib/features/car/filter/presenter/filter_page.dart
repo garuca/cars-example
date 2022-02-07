@@ -7,6 +7,7 @@ import 'package:cars/features/car/filter/presenter/states/filter_state.dart';
 import 'package:cars/features/car/filter/presenter/widgets/brand_picker.dart';
 import 'package:cars/features/car/filter/presenter/widgets/color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
@@ -278,36 +279,34 @@ class _FilterPageState extends State<FilterPage> {
         body: Column(
           children: <Widget>[
             Expanded(
-              child: StreamBuilder<FilterState>(
-                  stream: cubit,
+              child: BlocBuilder<FilterCubit, FilterState>(
                   builder: (context, snapshot) {
-                    var state = cubit.state;
+                var state = cubit.state;
 
-                    if (state is ErrorState) {
-                      return _buildError(state.error);
-                    }
+                if (state is ErrorState) {
+                  return _buildError(state.error);
+                }
 
-                    if (state is StartState) {
-                      return Center(
-                        child: Container(),
-                      );
-                    } else if (state is LoadingState) {
-                      return Center(
-                        child: FilterLoadingPage(),
-                      );
-                    } else if (state is SuccessState) {
-                      brandPickerController = BrandPickerController(
-                          brands: state.filter.brands,
-                          selects: widget.listBrandId,
-                          streamController: streamController);
-                      colorPickerController = ColorPickerController(
-                          colors: state.filter.colors,
-                          selects: widget.listColorId);
-                      return _buildSuccess(state.filter);
-                    } else {
-                      return Container();
-                    }
-                  }),
+                if (state is StartState) {
+                  return Center(
+                    child: Container(),
+                  );
+                } else if (state is LoadingState) {
+                  return Center(
+                    child: FilterLoadingPage(),
+                  );
+                } else if (state is SuccessState) {
+                  brandPickerController = BrandPickerController(
+                      brands: state.filter.brands,
+                      selects: widget.listBrandId,
+                      streamController: streamController);
+                  colorPickerController = ColorPickerController(
+                      colors: state.filter.colors, selects: widget.listColorId);
+                  return _buildSuccess(state.filter);
+                } else {
+                  return Container();
+                }
+              }),
             )
           ],
         ),

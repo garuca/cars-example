@@ -5,7 +5,7 @@ import 'package:cars/features/car/list/presenter/car_cubit.dart';
 import 'package:cars/features/car/list/presenter/states/feed_loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_money_formatter/flutter_money_formatter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'states/car_state.dart';
@@ -16,17 +16,14 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  CarCubit cubit;
   List<int> listBrandId = [], listColorId = [];
 
   @override
   void initState() {
     super.initState();
-    cubit = GetIt.instance.get<CarCubit>();
-    cubit.addFilterListCar([], []);
   }
 
-  _navigateAndDisplaySelection(BuildContext context) async {
+  _navigateAndDisplaySelection(BuildContext context, CarCubit carCubit) async {
     final result = await showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -36,12 +33,12 @@ class _FeedPageState extends State<FeedPage> {
       ),
     );
 
-    cubit.addFilterListCar(result[1], result[0]);
+    carCubit.addFilterListCar(result[1], result[0]);
     listColorId = result[0];
     listBrandId = result[1];
   }
 
-  Widget _gridView(List<Car> list) {
+  Widget _gridView(List<Car> list, CarCubit carCubit) {
     double spacing = 20;
     int columns = 2;
     var size = MediaQuery.of(context).size;
@@ -114,7 +111,7 @@ class _FeedPageState extends State<FeedPage> {
               padding: EdgeInsets.fromLTRB(0, 0, 18, 0),
             ),
             onTap: () {
-              _navigateAndDisplaySelection(context);
+              _navigateAndDisplaySelection(context, carCubit);
             },
           )
         ],
@@ -138,7 +135,7 @@ class _FeedPageState extends State<FeedPage> {
         childAspectRatio: (itemWidth / itemHeight),
         padding: EdgeInsets.all(spacing),
         children: list.map((car) {
-          FlutterMoneyFormatter fmfPrice = FlutterMoneyFormatter(
+          /*  FlutterMoneyFormatter fmfPrice = FlutterMoneyFormatter(
               amount: car.price.toDouble(),
               settings: MoneyFormatterSettings(
                   symbol: 'IDR',
@@ -155,7 +152,7 @@ class _FeedPageState extends State<FeedPage> {
                   decimalSeparator: ',',
                   symbolAndNumberSeparator: ' ',
                   fractionDigits: 0,
-                  compactFormatType: CompactFormatType.short));
+                  compactFormatType: CompactFormatType.short)); */
           return Container(
             child: Column(
               children: <Widget>[
@@ -234,14 +231,12 @@ class _FeedPageState extends State<FeedPage> {
                         Row(
                           children: <Widget>[
                             Tooltip(
-                              child: Text(
-                                '${car.transmissionType} ',
-                                style: TextStyle(
-                                    fontSize: 14, color: Color(0xFF768095)),
-                              ),
-                              message:
-                                  '${car.transmissionType} ${fmfMileage.output.nonSymbol}',
-                            ),
+                                child: Text(
+                                  '${car.transmissionType} ',
+                                  style: TextStyle(
+                                      fontSize: 14, color: Color(0xFF768095)),
+                                ),
+                                message: car.transmissionType),
                             Container(
                               width: 3,
                               height: 3,
@@ -253,13 +248,12 @@ class _FeedPageState extends State<FeedPage> {
                             Flexible(
                               child: Tooltip(
                                 child: Text(
-                                  ' ${fmfMileage.output.nonSymbol} km',
+                                  'km',
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       fontSize: 14, color: Color(0xFF768095)),
                                 ),
-                                message:
-                                    '${car.transmissionType} ${fmfMileage.output.nonSymbol} km',
+                                message: '${car.transmissionType}  km',
                               ),
                             )
                           ],
@@ -268,7 +262,7 @@ class _FeedPageState extends State<FeedPage> {
                           height: 7.0,
                         ),
                         Text(
-                          'R\$ ${fmfPrice.output.nonSymbol}',
+                          'R\$ ',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -305,7 +299,6 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void dispose() {
     super.dispose();
-    cubit.close();
   }
 
   @override
@@ -314,29 +307,25 @@ class _FeedPageState extends State<FeedPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: StreamBuilder<CarState>(
-                stream: cubit,
-                builder: (context, snapshot) {
-                  var state = cubit.state;
+            child: BlocBuilder<CarCubit, CarState>(builder: (context, state) {
+              if (state is ErrorState) {
+                return _buildError(state.error);
+              }
 
-                  if (state is ErrorState) {
-                    return _buildError(state.error);
-                  }
-
-                  if (state is StartState) {
-                    return Center(
-                      child: Text('Dita um filme que vc gosta em ingles plis '),
-                    );
-                  } else if (state is LoadingState) {
-                    return Center(
-                      child: FeedLoadingPage(),
-                    );
-                  } else if (state is SuccessState) {
-                    return _gridView(state.listFiltered);
-                  } else {
-                    return Container();
-                  }
-                }),
+              if (state is StartState) {
+                return Center(
+                  child: Text('Dita um filme que vc gosta em ingles plis '),
+                );
+              } else if (state is LoadingState) {
+                return Center(
+                  child: FeedLoadingPage(),
+                );
+              } else if (state is SuccessState) {
+                return _gridView(state.listFiltered, context.read<CarCubit>());
+              } else {
+                return Container();
+              }
+            }),
           )
         ],
       ),
