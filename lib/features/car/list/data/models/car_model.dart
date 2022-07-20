@@ -1,17 +1,28 @@
 import 'package:cars/features/car/list/domain/entities/car.dart';
 
-class CarModel extends Car {
-  String id;
-  String imageUrl;
-  String brandName;
-  String modelName;
-  int modelYear;
-  String fuelType;
-  int mileage;
-  String transmissionType;
-  int price;
-  int brandId;
-  int colorId;
+class CarModel implements Car {
+  @override
+  String? id;
+  @override
+  String? imageUrl;
+  @override
+  String? brandName;
+  @override
+  String? modelName;
+  @override
+  int? modelYear;
+  @override
+  String? fuelType;
+  @override
+  int? mileage;
+  @override
+  String? transmissionType;
+  @override
+  int? price;
+  @override
+  int? brandId;
+  @override
+  int? colorId;
 
   CarModel(
       {this.id,

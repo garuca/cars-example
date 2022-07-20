@@ -10,7 +10,7 @@ class CarDataSourceImpl implements CarDataSource {
   CarDataSourceImpl(this.dio);
 
   @override
-  Future<List<CarModel>> getCars() async {
+  Future<List<CarModel>?> getCars() async {
     Response response = await dio
         .get('https://run.mocky.io/v3/e2fe4deb-f65d-45e2-b548-39c17f08e637');
     if (response.statusCode == 200) {

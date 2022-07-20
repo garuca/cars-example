@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class FeedLoadingPage extends StatefulWidget {
+  const FeedLoadingPage({Key? key}) : super(key: key);
+
   @override
-  _FeedLoadingPage createState() => _FeedLoadingPage();
+  FeedLoadingPageState createState() => FeedLoadingPageState();
 }
 
-class _FeedLoadingPage extends State<FeedLoadingPage>
+class FeedLoadingPageState extends State<FeedLoadingPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation gradientPosition;
+  late AnimationController _controller;
+  late Animation gradientPosition;
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-        duration: Duration(milliseconds: 1500), vsync: this);
+        duration: const Duration(milliseconds: 1500), vsync: this);
 
     gradientPosition = Tween<double>(
       begin: -3,
@@ -47,15 +49,15 @@ class _FeedLoadingPage extends State<FeedLoadingPage>
           backgroundColor: Colors.white,
           actions: <Widget>[
             Container(
-              padding: EdgeInsets.only(right: 20, top: 15, bottom: 15),
+              padding: const EdgeInsets.only(right: 20, top: 15, bottom: 15),
               child: Container(
                 height: 24,
                 width: 24,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment(gradientPosition.value, 0),
-                        end: Alignment(-1, 0),
-                        colors: [
+                        end: const Alignment(-1, 0),
+                        colors: const [
                       Colors.black12,
                       Colors.black26,
                       Colors.black12
@@ -70,8 +72,12 @@ class _FeedLoadingPage extends State<FeedLoadingPage>
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment(gradientPosition.value, 0),
-                    end: Alignment(-1, 0),
-                    colors: [Colors.black12, Colors.black26, Colors.black12])),
+                    end: const Alignment(-1, 0),
+                    colors: const [
+                  Colors.black12,
+                  Colors.black26,
+                  Colors.black12
+                ])),
           )),
       body: GridView.count(
         physics: const NeverScrollableScrollPhysics(),
@@ -81,162 +87,154 @@ class _FeedLoadingPage extends State<FeedLoadingPage>
         childAspectRatio: (itemWidth / itemHeight),
         padding: EdgeInsets.all(spacing),
         children: List.generate(20, (index) {
-          return Container(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment(gradientPosition.value, 0),
-                            end: Alignment(-1, 0),
-                            colors: [
+          return Column(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment(gradientPosition.value, 0),
+                          end: const Alignment(-1, 0),
+                          colors: const [
+                            Colors.black12,
+                            Colors.black26,
+                            Colors.black12
+                          ]),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5.0),
+                      )),
+                ),
+              ),
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 10.1,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            height: 14,
+                            width: (itemWidth - (3 * spacing)) / 2,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment(gradientPosition.value, 0),
+                                    end: const Alignment(-1, 0),
+                                    colors: const [
+                                  Colors.black12,
+                                  Colors.black26,
+                                  Colors.black12
+                                ])),
+                          ),
+                          const Text('  '),
+                          Container(
+                            height: 14,
+                            width: (itemWidth - (3 * spacing)) / 2,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment(gradientPosition.value, 0),
+                                    end: const Alignment(-1, 0),
+                                    colors: const [
+                                  Colors.black12,
+                                  Colors.black26,
+                                  Colors.black12
+                                ])),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 7.0,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            height: 14,
+                            width: (itemWidth - (3 * spacing)) / 2,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment(gradientPosition.value, 0),
+                                    end: const Alignment(-1, 0),
+                                    colors: const [
+                                  Colors.black12,
+                                  Colors.black26,
+                                  Colors.black12
+                                ])),
+                          ),
+                          const Text('  '),
+                          Container(
+                            height: 14,
+                            width: (itemWidth - (3 * spacing)) / 2,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment(gradientPosition.value, 0),
+                                    end: const Alignment(-1, 0),
+                                    colors: const [
+                                  Colors.black12,
+                                  Colors.black26,
+                                  Colors.black12
+                                ])),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            height: 14,
+                            width: (itemWidth - (3 * spacing)) / 2,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment(gradientPosition.value, 0),
+                                    end: const Alignment(-1, 0),
+                                    colors: const [
+                                  Colors.black12,
+                                  Colors.black26,
+                                  Colors.black12
+                                ])),
+                          ),
+                          const Text('  '),
+                          Container(
+                            height: 14,
+                            width: (itemWidth - (3 * spacing)) / 2,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment(gradientPosition.value, 0),
+                                    end: const Alignment(-1, 0),
+                                    colors: const [
+                                  Colors.black12,
+                                  Colors.black26,
+                                  Colors.black12
+                                ])),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 7.0,
+                      ),
+                      Container(
+                        height: 16,
+                        width: (itemWidth - (3 * spacing)) / 2,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment(gradientPosition.value, 0),
+                                end: const Alignment(-1, 0),
+                                colors: const [
                               Colors.black12,
                               Colors.black26,
                               Colors.black12
-                            ]),
-                        borderRadius: BorderRadius.all(
-                          const Radius.circular(5.0),
-                        )),
+                            ])),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10.1,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              height: 14,
-                              width: (itemWidth - (3 * spacing)) / 2,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin:
-                                          Alignment(gradientPosition.value, 0),
-                                      end: Alignment(-1, 0),
-                                      colors: [
-                                    Colors.black12,
-                                    Colors.black26,
-                                    Colors.black12
-                                  ])),
-                            ),
-                            Text('  '),
-                            Container(
-                              height: 14,
-                              width: (itemWidth - (3 * spacing)) / 2,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin:
-                                          Alignment(gradientPosition.value, 0),
-                                      end: Alignment(-1, 0),
-                                      colors: [
-                                    Colors.black12,
-                                    Colors.black26,
-                                    Colors.black12
-                                  ])),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 7.0,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              height: 14,
-                              width: (itemWidth - (3 * spacing)) / 2,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin:
-                                          Alignment(gradientPosition.value, 0),
-                                      end: Alignment(-1, 0),
-                                      colors: [
-                                    Colors.black12,
-                                    Colors.black26,
-                                    Colors.black12
-                                  ])),
-                            ),
-                            Text('  '),
-                            Container(
-                              height: 14,
-                              width: (itemWidth - (3 * spacing)) / 2,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin:
-                                          Alignment(gradientPosition.value, 0),
-                                      end: Alignment(-1, 0),
-                                      colors: [
-                                    Colors.black12,
-                                    Colors.black26,
-                                    Colors.black12
-                                  ])),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              height: 14,
-                              width: (itemWidth - (3 * spacing)) / 2,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin:
-                                          Alignment(gradientPosition.value, 0),
-                                      end: Alignment(-1, 0),
-                                      colors: [
-                                    Colors.black12,
-                                    Colors.black26,
-                                    Colors.black12
-                                  ])),
-                            ),
-                            Text('  '),
-                            Container(
-                              height: 14,
-                              width: (itemWidth - (3 * spacing)) / 2,
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin:
-                                          Alignment(gradientPosition.value, 0),
-                                      end: Alignment(-1, 0),
-                                      colors: [
-                                    Colors.black12,
-                                    Colors.black26,
-                                    Colors.black12
-                                  ])),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 7.0,
-                        ),
-                        Container(
-                          height: 16,
-                          width: (itemWidth - (3 * spacing)) / 2,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment(gradientPosition.value, 0),
-                                  end: Alignment(-1, 0),
-                                  colors: [
-                                Colors.black12,
-                                Colors.black26,
-                                Colors.black12
-                              ])),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           );
         }).toList(),
       ),

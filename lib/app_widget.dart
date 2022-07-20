@@ -1,14 +1,16 @@
-import 'package:cars/features/car/list/presenter/feed_page.dart';
+import 'package:cars/features/car/list/presenter/ui/feed_page.dart';
 import 'package:flutter/material.dart';
 
 import 'app_module.dart';
 
 class AppWidget extends StatefulWidget {
+  const AppWidget({Key? key}) : super(key: key);
+
   @override
-  _AppWidgetState createState() => _AppWidgetState();
+  AppWidgetState createState() => AppWidgetState();
 }
 
-class _AppWidgetState extends State<AppWidget> {
+class AppWidgetState extends State<AppWidget> {
   @override
   void initState() {
     super.initState();
@@ -30,6 +32,6 @@ class _AppWidgetState extends State<AppWidget> {
           fontFamily: 'CircularStd',
           primarySwatch: Colors.blue,
         ),
-        home: FeedPage());
+        home: const FeedPage());
   }
 }

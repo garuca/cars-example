@@ -11,7 +11,7 @@ class FilterDataSourceImpl implements FiltersDataSource {
   FilterDataSourceImpl(this.dio);
 
   @override
-  Future<Filter> getFilters() async {
+  Future<Filter?> getFilters() async {
     Response responseColors = await dio
         .get('https://run.mocky.io/v3/ac466e17-58a4-432b-8647-7a2e4c4074e2');
     Response responseBrands = await dio

@@ -11,7 +11,7 @@ class CarRepositoryImpl implements CarRepository {
   CarRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<Failure, List<CarModel>>> list() async {
+  Future<Either<Failure, List<CarModel>?>> list() async {
     try {
       final result = await dataSource.getCars();
       return Right(result);
@@ -21,7 +21,7 @@ class CarRepositoryImpl implements CarRepository {
   }
 
   @override
-  Future<Either<Failure, List<Car>>> filter(
+  Future<Either<Failure, List<Car>?>> filter(
       List<int> listBrandId, List<int> listColorId) async {
     try {
       final result = await dataSource.getFilteredCars(listBrandId, listColorId);

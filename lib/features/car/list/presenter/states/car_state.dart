@@ -17,6 +17,6 @@ class ErrorState implements CarState {
 }
 
 class SuccessState implements CarState {
-  final List<Car> listFiltered;
+  final List<Car>? listFiltered;
   const SuccessState(this.listFiltered);
 }

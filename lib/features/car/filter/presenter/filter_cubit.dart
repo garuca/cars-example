@@ -5,9 +5,11 @@ import 'package:async/async.dart';
 
 class FilterCubit extends Cubit<FilterState> {
   final ListAllColorsAndBrands listAllColorsAndBrands;
-  CancelableOperation cancelable;
+  late CancelableOperation cancelable;
 
-  FilterCubit(this.listAllColorsAndBrands) : super(const StartState());
+  FilterCubit(this.listAllColorsAndBrands) : super(const StartState()) {
+    execute();
+  }
 
   Future<FilterState> execute() async {
     final response = await listAllColorsAndBrands.call();
@@ -15,14 +17,15 @@ class FilterCubit extends Cubit<FilterState> {
       (failure) => ErrorState(failure),
       (success) => SuccessState(success),
     );
+    emit(result);
     return result;
   }
 
   Future<void> addFilterListCar() async {
-    await cancelable?.cancel();
+    await cancelable.cancel();
     emit(const LoadingState());
     cancelable = CancelableOperation.fromFuture(
-        Future.delayed(Duration(milliseconds: 0)));
+        Future.delayed(const Duration(milliseconds: 0)));
     await cancelable.value;
     if (cancelable.isCompleted) {
       emit(await execute());

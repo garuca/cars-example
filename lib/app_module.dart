@@ -18,7 +18,7 @@ import 'features/car/list/domain/repositories/car_repository.dart';
 
 final sl = GetIt.I;
 
-startModule([Dio dio]) {
+startModule([Dio? dio]) {
   sl.registerFactory<ListAllCars>(() => ListAllCarsImpl(sl<CarRepository>()));
   sl.registerFactory<ListFilteredCars>(
       () => ListFilteredCarsImpl(sl<CarRepository>()));

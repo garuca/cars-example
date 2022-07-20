@@ -1,8 +1,10 @@
 import 'package:cars/features/car/filter/color/domain/entities/color.dart';
 
-class ColorModel extends ColorCustom {
-  String colorId;
-  String name;
+class ColorModel implements ColorCustom {
+  @override
+  String? colorId;
+  @override
+  String? name;
 
   ColorModel({this.colorId, this.name});
 

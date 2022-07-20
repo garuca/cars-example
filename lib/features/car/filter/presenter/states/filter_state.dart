@@ -17,6 +17,6 @@ class ErrorState implements FilterState {
 }
 
 class SuccessState implements FilterState {
-  final Filter filter;
+  final Filter? filter;
   const SuccessState(this.filter);
 }

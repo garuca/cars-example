@@ -4,46 +4,42 @@ import 'package:cars/features/car/filter/brand/domain/entities/brand.dart';
 import 'package:flutter/material.dart';
 
 class BrandPicker extends StatefulWidget {
-  final BrandPickerController controller;
+  final BrandPickerController? controller;
 
-  BrandPicker({Key key, this.controller}) : super(key: key);
+  const BrandPicker({Key? key, this.controller}) : super(key: key);
 
   @override
-  _BrandPickerState createState() => _BrandPickerState();
+  BrandPickerState createState() => BrandPickerState();
 }
 
-class _BrandPickerState extends State<BrandPicker> {
+class BrandPickerState extends State<BrandPicker> {
   Map<String, String> images = {
     '1': 'images/logo-audi.jpg',
     '2': 'images/logo-chevrolet.jpg',
     '3': 'images/logo-hyundai.jpg',
   };
-  var brandsFilters = [];
+  List<Brand> brandsFilters = [];
   @override
   void initState() {
     super.initState();
-    brandsFilters = widget.controller.brands;
-    StreamSubscription subscription;
-    subscription = widget.controller.streamController.stream.listen((data) {
-      print(data);
+    brandsFilters = widget.controller!.brands!;
+    late StreamSubscription subscription;
+    subscription = widget.controller!.streamController!.stream.listen((data) {
       subscription.pause(Future.delayed(const Duration(microseconds: 500)));
       setState(() {
-        brandsFilters = widget.controller.brands
+        brandsFilters = widget.controller!.brands!
             .where((brand) =>
-                brand.name.toUpperCase().contains(data.toUpperCase()))
+                brand.name!.toUpperCase().contains(data.toUpperCase()))
             .toList();
       });
     }, onDone: () {
-      print("Task Done");
       subscription.cancel();
-    }, onError: (error) {
-      print("Some Error");
-    });
+    }, onError: (error) {});
   }
 
   @override
   void dispose() {
-    widget.controller.streamController.close();
+    widget.controller!.streamController!.close();
     super.dispose();
   }
 
@@ -53,10 +49,11 @@ class _BrandPickerState extends State<BrandPicker> {
       return GestureDetector(
         onTap: () {
           setState(() {
-            if (widget.controller.selects.contains(int.parse(brand.brandId))) {
-              widget.controller.selects.remove(int.parse(brand.brandId));
+            if (widget.controller!.selects!
+                .contains(int.parse(brand.brandId!))) {
+              widget.controller!.selects!.remove(int.parse(brand.brandId!));
             } else {
-              widget.controller.selects.add(int.parse(brand.brandId));
+              widget.controller!.selects!.add(int.parse(brand.brandId!));
             }
           });
         },
@@ -70,38 +67,38 @@ class _BrandPickerState extends State<BrandPicker> {
                   width: 18.0,
                   child: Theme(
                     data: Theme.of(context).copyWith(
-                      unselectedWidgetColor: Color(0xFFA5ABB7),
+                      unselectedWidgetColor: const Color(0xFFA5ABB7),
                     ),
                     child: Checkbox(
-                      value: widget.controller.selects
-                          .contains(int.parse(brand.brandId)),
-                      onChanged: (bool value) {
+                      value: widget.controller!.selects!
+                          .contains(int.parse(brand.brandId!)),
+                      onChanged: (bool? value) {
                         setState(() {
-                          if (widget.controller.selects
-                              .contains(int.parse(brand.brandId))) {
-                            widget.controller.selects
-                                .remove(int.parse(brand.brandId));
+                          if (widget.controller!.selects!
+                              .contains(int.parse(brand.brandId!))) {
+                            widget.controller!.selects!
+                                .remove(int.parse(brand.brandId!));
                           } else {
-                            widget.controller.selects
-                                .add(int.parse(brand.brandId));
+                            widget.controller!.selects!
+                                .add(int.parse(brand.brandId!));
                           }
                         });
                       },
                     ),
                   )),
-              SizedBox(
+              const SizedBox(
                 width: 17,
               ),
               Image.asset(
-                images[brand.brandId],
+                images[brand.brandId!]!,
                 height: 50,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Text(
-                '${brand.name.capitalize()}',
-                style: TextStyle(fontSize: 16, color: Color(0xFF768095)),
+                brand.name!.capitalize(),
+                style: const TextStyle(fontSize: 16, color: Color(0xFF768095)),
               ),
             ],
           ),
@@ -125,14 +122,14 @@ class _BrandPickerState extends State<BrandPicker> {
 }
 
 class BrandPickerController {
-  final List<Brand> brands;
-  final List<int> selects;
-  StreamController streamController;
+  final List<Brand>? brands;
+  final List<int>? selects;
+  StreamController? streamController;
   BrandPickerController({this.brands, this.selects, this.streamController});
 }
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }
